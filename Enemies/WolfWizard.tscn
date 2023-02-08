@@ -1,0 +1,154 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://WhiteColor.tres" type="Shader" id=1]
+[ext_resource path="res://Stats.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Enemies/WonderController.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Overlap/Hurtbox.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Enemies/WolfWizard.png" type="Texture" id=5]
+[ext_resource path="res://Shadows/MediumShadow.png" type="Texture" id=6]
+[ext_resource path="res://Enemies/PlayerDetectionZone.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Overlap/Hitbox.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Overlap/SoftCollision.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Enemies/WolfWizard.gd" type="Script" id=10]
+
+[sub_resource type="ShaderMaterial" id=6]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/active = false
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 5 )
+region = Rect2( 48, 0, 48, 48 )
+
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ SubResource( 15 ), SubResource( 16 ) ],
+"loop": true,
+"name": "Walk",
+"speed": 3.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=17]
+height = 0.0
+
+[sub_resource type="CapsuleShape2D" id=9]
+radius = 11.0
+height = 10.0
+
+[sub_resource type="CircleShape2D" id=10]
+radius = 50.0899
+
+[sub_resource type="CapsuleShape2D" id=18]
+radius = 12.0
+height = 8.0
+
+[sub_resource type="CircleShape2D" id=12]
+radius = 8.0
+
+[sub_resource type="Animation" id=13]
+resource_name = "Start"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:material:shader_param/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "Stop"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:material:shader_param/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[node name="WolfWizard" type="KinematicBody2D"]
+collision_layer = 16
+script = ExtResource( 10 )
+
+[node name="ShadowSprite" type="Sprite" parent="."]
+position = Vector2( -1, 3 )
+scale = Vector2( 1.375, 1 )
+texture = ExtResource( 6 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+material = SubResource( 6 )
+frames = SubResource( 7 )
+animation = "Walk"
+playing = true
+offset = Vector2( 0, -12 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -9 )
+shape = SubResource( 17 )
+
+[node name="Hurtbox" parent="." instance=ExtResource( 4 )]
+position = Vector2( 0, -9 )
+collision_layer = 8
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+shape = SubResource( 9 )
+
+[node name="Stats" parent="." instance=ExtResource( 2 )]
+originalHealth = 2
+
+[node name="PlayerDetectionZone" parent="." instance=ExtResource( 7 )]
+position = Vector2( 0, -9 )
+
+[node name="CollisionShape2D" parent="PlayerDetectionZone" index="0"]
+modulate = Color( 1, 1, 1, 0.305882 )
+shape = SubResource( 10 )
+
+[node name="Hitbox" parent="." instance=ExtResource( 8 )]
+position = Vector2( 0, -11 )
+collision_mask = 4
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource( 18 )
+
+[node name="SoftCollision" parent="." instance=ExtResource( 9 )]
+position = Vector2( 0, -9 )
+
+[node name="CollisionShape2D" parent="SoftCollision" index="0"]
+shape = SubResource( 12 )
+
+[node name="WonderController" parent="." instance=ExtResource( 3 )]
+position = Vector2( 0, -9 )
+
+[node name="BlinkAnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Start = SubResource( 13 )
+anims/Stop = SubResource( 14 )
+
+[node name="BulletTime" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+[connection signal="invincibility_ended" from="Hurtbox" to="." method="_on_Hurtbox_invincibility_ended"]
+[connection signal="invincibility_started" from="Hurtbox" to="." method="_on_Hurtbox_invincibility_started"]
+[connection signal="no_health" from="Stats" to="." method="_on_Stats_no_health"]
+[connection signal="timeout" from="BulletTime" to="." method="_on_BulletTime_timeout"]
+
+[editable path="Hurtbox"]
+[editable path="PlayerDetectionZone"]
+[editable path="Hitbox"]
+[editable path="SoftCollision"]

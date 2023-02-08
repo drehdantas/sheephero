@@ -1,0 +1,184 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://UI/UpdatesUI.gd" type="Script" id=1]
+[ext_resource path="res://UI/pixelmix_bold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Music and Sounds/PowerUp.wav" type="AudioStream" id=3]
+[ext_resource path="res://Music and Sounds/Healing.wav" type="AudioStream" id=4]
+[ext_resource path="res://UI/maxhealth-button.png" type="Texture" id=5]
+[ext_resource path="res://UI/healing-button.png" type="Texture" id=6]
+[ext_resource path="res://UI/pixelmix.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://UI/speed-button.png" type="Texture" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 8
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 8
+font_data = ExtResource( 7 )
+
+[sub_resource type="Theme" id=2]
+
+[node name="UpdatesUI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.862745 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+margin_top = 8.0
+margin_right = 320.0
+margin_bottom = 24.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 1 )
+text = "UPGRADES"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+margin_top = 28.0
+margin_right = 320.0
+margin_bottom = 172.0
+custom_constants/separation = 0
+alignment = 1
+
+[node name="Option1" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+margin_left = 65.0
+margin_right = 255.0
+margin_bottom = 48.0
+size_flags_horizontal = 4
+size_flags_vertical = 2
+texture_normal = ExtResource( 6 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="VBoxContainer/HBoxContainer/Option1"]
+stream = ExtResource( 4 )
+
+[node name="Label3" type="Label" parent="VBoxContainer/HBoxContainer/Option1"]
+margin_left = 41.0
+margin_top = 14.0
+margin_right = 146.0
+margin_bottom = 23.0
+custom_fonts/font = SubResource( 3 )
+text = "Healing"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label4" type="Label" parent="VBoxContainer/HBoxContainer/Option1"]
+margin_left = 41.0
+margin_top = 25.0
+margin_right = 181.0
+margin_bottom = 34.0
+custom_colors/font_color = Color( 0.666667, 0.647059, 0.647059, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Heals all your hit points"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Option2" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+margin_left = 65.0
+margin_top = 48.0
+margin_right = 255.0
+margin_bottom = 96.0
+size_flags_horizontal = 4
+theme = SubResource( 2 )
+action_mode = 0
+texture_normal = ExtResource( 5 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="VBoxContainer/HBoxContainer/Option2"]
+stream = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Option2"]
+margin_left = 41.0
+margin_top = 8.0
+margin_right = 146.0
+margin_bottom = 17.0
+custom_fonts/font = SubResource( 3 )
+text = "Increase max life"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer/Option2"]
+margin_left = 41.0
+margin_top = 19.0
+margin_right = 181.0
+margin_bottom = 39.0
+custom_colors/font_color = Color( 0.666667, 0.647059, 0.647059, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Increases your maximum 
+health but does not heal"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Option3" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+margin_left = 65.0
+margin_top = 96.0
+margin_right = 255.0
+margin_bottom = 144.0
+size_flags_horizontal = 4
+theme = SubResource( 2 )
+action_mode = 0
+texture_normal = ExtResource( 8 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="VBoxContainer/HBoxContainer/Option3"]
+stream = ExtResource( 3 )
+
+[node name="Label5" type="Label" parent="VBoxContainer/HBoxContainer/Option3"]
+margin_left = 41.0
+margin_top = 8.0
+margin_right = 146.0
+margin_bottom = 17.0
+custom_fonts/font = SubResource( 3 )
+text = "Increase speed"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label6" type="Label" parent="VBoxContainer/HBoxContainer/Option3"]
+margin_left = 41.0
+margin_top = 19.0
+margin_right = 181.0
+margin_bottom = 39.0
+custom_colors/font_color = Color( 0.666667, 0.647059, 0.647059, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Increases your movement 
+speed a little"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Option1" to="." method="_on_Option1_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Option2" to="." method="_on_Option2_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Option3" to="." method="_on_Option3_pressed"]

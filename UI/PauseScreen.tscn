@@ -1,0 +1,101 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://UI/Buttons/MenuButton.tscn" type="PackedScene" id=1]
+[ext_resource path="res://UI/pixelmix_bold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://UI/Pause.gd" type="Script" id=3]
+[ext_resource path="res://UI/volume-border-icon.png" type="Texture" id=4]
+[ext_resource path="res://UI/volume-icon.png" type="Texture" id=5]
+
+[sub_resource type="DynamicFont" id=119]
+size = 8
+font_data = ExtResource( 2 )
+
+[node name="Pause" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.705882 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 10
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+margin_top = 26.0
+margin_right = 320.0
+margin_bottom = 34.0
+custom_colors/font_color = Color( 0.666667, 0.647059, 0.647059, 1 )
+custom_fonts/font = SubResource( 119 )
+text = "PAUSED"
+align = 1
+
+[node name="ResumeButton" parent="VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 44.0
+margin_right = 320.0
+margin_bottom = 64.0
+
+[node name="Label" parent="VBoxContainer/ResumeButton" index="0"]
+text = "RESUME"
+
+[node name="RestartButton" parent="VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 74.0
+margin_right = 320.0
+margin_bottom = 94.0
+
+[node name="Label" parent="VBoxContainer/RestartButton" index="0"]
+text = "RESTART"
+
+[node name="QuitButton" parent="VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 104.0
+margin_right = 320.0
+margin_bottom = 124.0
+
+[node name="Label" parent="VBoxContainer/QuitButton" index="0"]
+text = "QUIT"
+
+[node name="SongButton" parent="VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 134.0
+margin_right = 320.0
+margin_bottom = 154.0
+
+[node name="Label" parent="VBoxContainer/SongButton" index="0"]
+visible = false
+text = "SONG"
+
+[node name="VolumeIcon" type="Sprite" parent="VBoxContainer/SongButton"]
+position = Vector2( 160.25, 10.25 )
+scale = Vector2( 0.612501, 0.612501 )
+texture = ExtResource( 5 )
+
+[node name="VolumeBorderIcon" type="Sprite" parent="VBoxContainer/SongButton"]
+position = Vector2( 160, 9.99999 )
+scale = Vector2( 0.649999, 0.649999 )
+texture = ExtResource( 4 )
+
+[connection signal="pressed" from="VBoxContainer/ResumeButton" to="." method="_on_ResumeButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/SongButton" to="." method="_on_SongButton_pressed"]
+
+[editable path="VBoxContainer/ResumeButton"]
+[editable path="VBoxContainer/RestartButton"]
+[editable path="VBoxContainer/QuitButton"]
+[editable path="VBoxContainer/SongButton"]
