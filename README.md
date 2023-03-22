@@ -14,6 +14,6 @@ You can find me on Instagram [@drehdantas.art](https://www.instagram.com/drehdan
 ![Screenshot of dash control](https://i.imgur.com/A93CFhI.gif)  
 
 ## Credit
-Music composed by [Bet Cole](bitbybitsound.com)
-
-Learning Godot with [HeartBeast](https://www.youtube.com/watch?v=mAbG8Oi-SvQ&list=PL9FzW-m48fn2SlrW0KoLT4n5egNdX-W9a&ab_channel=HeartBeast)
+- Music composed by [Bet Cole](bitbybitsound.com)
+- Learning Godot with [HeartBeast](https://www.youtube.com/watch?v=mAbG8Oi-SvQ&list=PL9FzW-m48fn2SlrW0KoLT4n5egNdX-W9a&ab_channel=HeartBeast)
+- Thanks to the awesome Godot community for being helpful to anyone with problems, for making amazing tutorials, for writing the documentation and being supportive.
