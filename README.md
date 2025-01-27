@@ -6,7 +6,7 @@
 Fully copyrighted project. 
 
 I challenged myself to develop a game completely and here I am. Because of this, both the arts and development were done by myself. 
-You can find me on Instagram [@drehdantas.art](https://www.instagram.com/drehdantas.art/?hl=en)
+You can find me on Instagram [@drehdantas](https://www.instagram.com/drehdantas/?hl=en)
 
 ## Controls
 ![Screenshot of moviment control](https://i.imgur.com/zALAMUF.gif)
